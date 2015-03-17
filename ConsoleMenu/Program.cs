@@ -11,7 +11,7 @@ namespace ConsoleMenu
         static void Main(string[] args)
         {
             var ctlr = new Controller.MenuController();
-            ctlr.Draw();
+            ctlr.Run();
             Console.ReadKey();
         }
     }
