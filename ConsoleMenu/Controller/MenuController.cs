@@ -76,54 +76,26 @@ namespace ConsoleMenu.Controller
             Console.Clear(); // clear the screen 
             Console.WriteLine(currentMenu.Title); // write the current menu's title
 
-            //DisplayContents(currentMenu);
-            currentMenu.DisplayContents();
+            // indent the contents
+            var contents = "  " + currentMenu.DisplayContents().Replace("\n", "\n  "); 
 
+            Console.WriteLine(contents);
+
+            // render the sub-menus and the currently selected one, if any.
             for (Int32 i = 0; currentMenu.Submenus != null && i < currentMenu.Submenus.Count; i++)
             {
-                ColourIfSelected(i, menuIndex, () => Console.WriteLine("  [{0}] {1}", i, currentMenu.Submenus[i].Title));
+                if (i == menuIndex) 
+                    Console.BackgroundColor = highlightBGColour;
+
+                Console.WriteLine("  [{0}] {1}", i, currentMenu.Submenus[i].Title);
+                Console.BackgroundColor = normalBGColour;
             }
 
             Console.WriteLine(
-                "\n----------------------------------------" +
-                "\nUse [UP ] and [DOWN] to navigate" +
+                "\n--------------------------------------------------------" +
+                "\nUse [UP] and [DN] to navigate" +
                 "\nUse [RET] to select, [BSP] to go back, and [ESC] to quit"
             );
         }
-
-        private void ColourIfSelected(Int32 currentIndex, Int32 requiredIndex, Action print)
-        {
-            if (currentIndex == requiredIndex) Console.BackgroundColor = highlightBGColour;
-
-            print();
-            Console.BackgroundColor = normalBGColour;
-        }
-
-        //private void DisplayContents(MenuItem menu)
-        //{
-        //    switch (menu.SourceType)
-        //    {
-        //        case SourceType.File:
-        //            break;
-        //        case SourceType.Folder:
-        //            break;
-        //        case SourceType.Json:
-        //            break;
-        //        case SourceType.RestGet:
-        //            var response = JsonConvert.DeserializeObject<GitHubStatus>(Rest.Get(menu));
-        //            Console.WriteLine(response);
-        //            break;
-        //        case SourceType.Rss:
-        //            break;
-        //        case SourceType.Text:
-        //            if (!String.IsNullOrEmpty(menu.Contents))
-        //                Console.WriteLine(menu.Contents);
-        //            break;
-        //        case SourceType.Url:
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
     }
 }

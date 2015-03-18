@@ -8,9 +8,5 @@ namespace ConsoleMenu.Model.Menu
 {
     class UrlMenu : MenuItem
     {
-        public override void DisplayContents()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

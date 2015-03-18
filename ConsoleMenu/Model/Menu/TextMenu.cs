@@ -8,10 +8,11 @@ namespace ConsoleMenu.Model.Menu
 {
     class TextMenu : MenuItem
     {
-        public override void DisplayContents()
+        public override String DisplayContents()
         {
             if (!String.IsNullOrEmpty(Contents))
-                Console.WriteLine(Contents);
+                return Contents;
+            else return "";
         }
     }
 }

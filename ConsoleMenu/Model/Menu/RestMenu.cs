@@ -9,10 +9,10 @@ namespace ConsoleMenu.Model.Menu
 {
     class RestMenu : MenuItem
     {
-        public override void DisplayContents()
+        public override String DisplayContents()
         {
-            var response = JsonConvert.DeserializeObject<GitHubStatus>(Rest.Get(this));
-            Console.WriteLine(response);
+            return JsonConvert.DeserializeObject<GitHubStatus>(Rest.Get(this)).ToString();
+            
         }
     }
 }

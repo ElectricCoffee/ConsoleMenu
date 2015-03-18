@@ -14,6 +14,10 @@ namespace ConsoleMenu.Model
         public List<MenuItem> Submenus { get; set; }
         public String Source { get; set; }
         public String SourceType { get; set; }
-        public abstract void DisplayContents();
+
+        public virtual String DisplayContents()
+        {
+            return "This feature is not currently implemented";
+        }
     }
 }

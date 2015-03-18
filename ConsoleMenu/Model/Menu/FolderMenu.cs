@@ -8,9 +8,5 @@ namespace ConsoleMenu.Model.Menu
 {
     class FolderMenu : MenuItem
     {
-        public override void DisplayContents()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
