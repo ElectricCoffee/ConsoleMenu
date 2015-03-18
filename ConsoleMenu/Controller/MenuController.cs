@@ -77,24 +77,45 @@ namespace ConsoleMenu.Controller
             Console.WriteLine(currentMenu.Title); // write the current menu's title
 
             // indent the contents
-            var contents = "  " + currentMenu.DisplayContents().Replace("\n", "\n  "); 
+            var contents = "  " + currentMenu.DisplayContents().Replace("\n", "\n  ");
 
             Console.WriteLine(contents);
 
-            // render the sub-menus and the currently selected one, if any.
-            for (Int32 i = 0; currentMenu.Submenus != null && i < currentMenu.Submenus.Count; i++)
+            if (currentMenu.Submenus != null)
             {
-                if (i == menuIndex) 
-                    Console.BackgroundColor = highlightBGColour;
+                // helper variables that define the rendering behaviour.
+                var count = currentMenu.Submenus.Count; // gets max-number of sub-menus
 
-                Console.WriteLine("  [{0}] {1}", i, currentMenu.Submenus[i].Title);
-                Console.BackgroundColor = normalBGColour;
+                /* set the for-loop's starting value to be the currently selected item's position - 1
+                 * if and only if the menu selector is on a menu item whose index is > 1 AND there are more than 10 items in the menu
+                 * otherwise re-draw the menu at the first element; this is done to allow scrolling menus */
+                var startingValue = menuIndex > 1 && count > 10 ? menuIndex - 1 : 0;
+
+                /* never render more than 10 elements past the starting value, 
+                 * this is so we don't overflow the screen with menu items */
+                var buffer = startingValue + 10;
+
+                for (Int32 i = startingValue; i < count && i < buffer; i++)
+                {
+                    if (i == menuIndex)
+                        Console.BackgroundColor = highlightBGColour;
+
+                    Console.WriteLine("  [{0,3}] {1}", i, currentMenu.Submenus[i].Title);
+                    Console.BackgroundColor = normalBGColour;
+                }
+
+                if (buffer < count)
+                {
+                    Console.WriteLine("\nDisplaying item {0,3} out of {1,3}", buffer - 1, count - 1);
+                }
+                else Console.WriteLine();
             }
 
             Console.WriteLine(
-                "\n--------------------------------------------------------" +
+                "--------------------------------------------------------" +
                 "\nUse [UP] and [DN] to navigate" +
-                "\nUse [RET] to select, [BSP] to go back, and [ESC] to quit"
+                "\nUse [RET] to select, [BSP] to go back, and [ESC] to quit" + 
+                "\nCopyright 2015 @ Nikolaj Lepka"
             );
         }
     }
