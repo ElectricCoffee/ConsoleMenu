@@ -25,13 +25,15 @@ namespace ConsoleMenu.Controller
         public MenuController()
         {
             menuHistory = new Stack<MenuItem>();
-            currentMenu = JsonConvert.DeserializeObject<MenuItem>(File.ReadAllText(menuPath));
+            var json = File.ReadAllText(menuPath);
+            currentMenu = JsonConvert.DeserializeObject<MenuItem>(json, new MenuItemConverter());
         }
 
         public void Run()
         {
-            int sentinel = 1;
-            do
+            var alive = true;
+
+            while (alive)
             {
                 Draw();
 
@@ -61,12 +63,12 @@ namespace ConsoleMenu.Controller
                         }
                         break;
                     case ConsoleKey.Escape: // go back all levels
-                        sentinel = 0;
+                        alive = false;
                         break;
                     default:
                         break;
                 }
-            } while (sentinel > 0);
+            }
         }
 
         private void Draw()
@@ -74,7 +76,8 @@ namespace ConsoleMenu.Controller
             Console.Clear(); // clear the screen 
             Console.WriteLine(currentMenu.Title); // write the current menu's title
 
-            DisplayContents(currentMenu);
+            //DisplayContents(currentMenu);
+            currentMenu.DisplayContents();
 
             for (Int32 i = 0; currentMenu.Submenus != null && i < currentMenu.Submenus.Count; i++)
             {
@@ -83,8 +86,8 @@ namespace ConsoleMenu.Controller
 
             Console.WriteLine(
                 "\n----------------------------------------" +
-                "\nUse [UP] and [DOWN] to navigate" +
-                "\nUse [RET] to select and [ESC] to go back"
+                "\nUse [UP ] and [DOWN] to navigate" +
+                "\nUse [RET] to select, [BSP] to go back, and [ESC] to quit"
             );
         }
 
@@ -96,31 +99,31 @@ namespace ConsoleMenu.Controller
             Console.BackgroundColor = normalBGColour;
         }
 
-        private void DisplayContents(MenuItem menu)
-        {
-            switch (menu.SourceType)
-            {
-                case SourceType.File:
-                    break;
-                case SourceType.Folder:
-                    break;
-                case SourceType.Json:
-                    break;
-                case SourceType.RestGet:
-                    var response = JsonConvert.DeserializeObject<GitHubStatus>(Rest.Get(menu));
-                    Console.WriteLine(response);
-                    break;
-                case SourceType.Rss:
-                    break;
-                case SourceType.Text:
-                    if (!String.IsNullOrEmpty(menu.Contents))
-                        Console.WriteLine(menu.Contents);
-                    break;
-                case SourceType.Url:
-                    break;
-                default:
-                    break;
-            }
-        }
+        //private void DisplayContents(MenuItem menu)
+        //{
+        //    switch (menu.SourceType)
+        //    {
+        //        case SourceType.File:
+        //            break;
+        //        case SourceType.Folder:
+        //            break;
+        //        case SourceType.Json:
+        //            break;
+        //        case SourceType.RestGet:
+        //            var response = JsonConvert.DeserializeObject<GitHubStatus>(Rest.Get(menu));
+        //            Console.WriteLine(response);
+        //            break;
+        //        case SourceType.Rss:
+        //            break;
+        //        case SourceType.Text:
+        //            if (!String.IsNullOrEmpty(menu.Contents))
+        //                Console.WriteLine(menu.Contents);
+        //            break;
+        //        case SourceType.Url:
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
     }
 }

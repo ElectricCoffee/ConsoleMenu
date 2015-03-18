@@ -48,6 +48,14 @@
     <Compile Include="Controller\MenuController.cs" />
     <Compile Include="Model\GitHubStatus.cs" />
     <Compile Include="Model\MenuItem.cs" />
+    <Compile Include="Model\MenuItemConverter.cs" />
+    <Compile Include="Model\Menu\FileMenu.cs" />
+    <Compile Include="Model\Menu\FolderMenu.cs" />
+    <Compile Include="Model\Menu\JsonMenu.cs" />
+    <Compile Include="Model\Menu\RestMenu.cs" />
+    <Compile Include="Model\Menu\RssMenu.cs" />
+    <Compile Include="Model\Menu\TextMenu.cs" />
+    <Compile Include="Model\Menu\UrlMenu.cs" />
     <Compile Include="Model\RestGet.cs" />
     <Compile Include="Model\SourceType.cs" />
     <Compile Include="Program.cs" />
@@ -60,6 +68,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

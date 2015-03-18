@@ -37,7 +37,8 @@
                     "Contents": "This is the second sub-menu",
                     "SourceType": "Text"
                 }
-            ]
+            ],
+            "SourceType":  "Text"
         }
     ],
     "SourceType": "Text"
