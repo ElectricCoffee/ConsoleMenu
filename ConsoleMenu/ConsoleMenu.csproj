@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="Controller\MenuController.cs" />
     <Compile Include="Model\GitHubStatus.cs" />
-    <Compile Include="Model\IDrawable.cs" />
     <Compile Include="Model\MenuItem.cs" />
     <Compile Include="Model\RestGet.cs" />
     <Compile Include="Model\SourceType.cs" />

@@ -46,9 +46,12 @@ namespace ConsoleMenu.Controller
                         menuIndex = menuIndex < currentMenu.Submenus.Count - 1 ? menuIndex + 1 : menuIndex;
                         break;
                     case ConsoleKey.Enter: // enter menu item
-                        menuHistory.Push(currentMenu);
-                        currentMenu = currentMenu.Submenus[menuIndex];
-                        menuIndex = 0;
+                        if (currentMenu.Submenus != null)
+                        {
+                            menuHistory.Push(currentMenu);
+                            currentMenu = currentMenu.Submenus[menuIndex];
+                            menuIndex = 0;
+                        }
                         break;
                     case ConsoleKey.Backspace: // go back one level
                         if (menuHistory.Count >= 1)
@@ -70,6 +73,8 @@ namespace ConsoleMenu.Controller
         {
             Console.Clear(); // clear the screen 
             Console.WriteLine(currentMenu.Title); // write the current menu's title
+
+            DisplayContents(currentMenu);
 
             for (Int32 i = 0; currentMenu.Submenus != null && i < currentMenu.Submenus.Count; i++)
             {
@@ -102,6 +107,8 @@ namespace ConsoleMenu.Controller
                 case SourceType.Json:
                     break;
                 case SourceType.RestGet:
+                    var response = JsonConvert.DeserializeObject<GitHubStatus>(Rest.Get(menu));
+                    Console.WriteLine(response);
                     break;
                 case SourceType.Rss:
                     break;

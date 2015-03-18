@@ -13,7 +13,7 @@
         },
         {
             "Title": "GitHub System Status",
-            "Contents": "If you see this message, an error occurred",
+            "Contents": "{\"status\":\"ERROR\",\"body\":\"If you see this, the data failed to load\"}",
             "Source": "https://status.github.com/api/last-message.json",
             "SourceType": "RestGet"
         },
