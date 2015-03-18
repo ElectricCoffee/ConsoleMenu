@@ -10,9 +10,7 @@ namespace ConsoleMenu
     {
         static void Main(string[] args)
         {
-            var ctlr = new Controller.MenuController();
-            ctlr.Run();
-            Console.ReadKey();
+            new Controller.MenuController().Run(); // run the UI
         }
     }
 }
