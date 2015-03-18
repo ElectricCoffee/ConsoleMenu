@@ -38,9 +38,8 @@ namespace ConsoleMenu.Model.Menu
 
         public override string DisplayContents()
         {
-            Contents = "Team Fortress 2 RSS Feed";
             Submenus = UpdateFeed();
-            return base.DisplayContents();
+            return "";
         }
     }
 }

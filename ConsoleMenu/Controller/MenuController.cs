@@ -106,7 +106,7 @@ namespace ConsoleMenu.Controller
 
                 if (buffer < count)
                 {
-                    Console.WriteLine("\nDisplaying item {0,3} out of {1,3}", buffer - 1, count - 1);
+                    Console.WriteLine("\nDisplaying item {0} out of {1}", buffer - 1, count - 1);
                 }
                 else Console.WriteLine();
             }
