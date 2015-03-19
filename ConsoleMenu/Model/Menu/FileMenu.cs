@@ -8,5 +8,10 @@ namespace ConsoleMenu.Model.Menu
 {
     class FileMenu : MenuItem
     {
+        //public String 
+        public override string DisplayContents()
+        {
+            return Contents;
+        }
     }
 }

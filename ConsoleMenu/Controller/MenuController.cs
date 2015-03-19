@@ -39,13 +39,16 @@ namespace ConsoleMenu.Controller
 
                 var keyInfo = Console.ReadKey();
 
+
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.UpArrow: // decrease index
-                        menuIndex = menuIndex > 0 ? menuIndex - 1 : menuIndex;
+                        if (currentMenu.Submenus != null)
+                            menuIndex = menuIndex > 0 ? menuIndex - 1 : menuIndex;
                         break;
                     case ConsoleKey.DownArrow: // increase index
-                        menuIndex = menuIndex < currentMenu.Submenus.Count - 1 ? menuIndex + 1 : menuIndex;
+                        if (currentMenu.Submenus != null)
+                            menuIndex = menuIndex < currentMenu.Submenus.Count - 1 ? menuIndex + 1 : menuIndex;
                         break;
                     case ConsoleKey.Enter: // enter menu item
                         if (currentMenu.Submenus != null)
@@ -114,7 +117,7 @@ namespace ConsoleMenu.Controller
             Console.WriteLine(
                 "--------------------------------------------------------" +
                 "\nUse [UP] and [DN] to navigate" +
-                "\nUse [RET] to select, [BSP] to go back, and [ESC] to quit" + 
+                "\nUse [RET] to select, [BSP] to go back, and [ESC] to quit" +
                 "\nCopyright 2015 @ Nikolaj Lepka"
             );
         }

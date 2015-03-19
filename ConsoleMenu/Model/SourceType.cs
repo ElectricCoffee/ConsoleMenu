@@ -9,8 +9,6 @@ namespace ConsoleMenu.Model
     static class SourceType // because enums don't work well with strings
     {
         public const string
-            Json = "Json",
-            Url = "Url",
             File = "File",
             Folder = "Folder",
             Text = "Text",

@@ -30,9 +30,6 @@ namespace ConsoleMenu.Model
                 case SourceType.Folder:
                     target = new Menu.FolderMenu();
                     break;
-                case SourceType.Json:    
-                    target = new Menu.JsonMenu();
-                    break;
                 case SourceType.RestGet: 
                     target = new Menu.RestMenu();
                     break;
@@ -41,9 +38,6 @@ namespace ConsoleMenu.Model
                     break;
                 case SourceType.Text:    
                     target = new Menu.TextMenu();
-                    break;
-                case SourceType.Url:     
-                    target = new Menu.UrlMenu();
                     break;
                 default: throw new ArgumentException("Invalid source type");
             }

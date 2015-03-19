@@ -30,6 +30,7 @@ namespace ConsoleMenu.Model.Menu
                     var subFeed = new TextMenu();
                     subFeed.Title = item.Title.Text;
                     subFeed.Contents = item.Summary.Text;
+                    subFeed.SourceType = Model.SourceType.Text;
                     localSubMenus.Add(subFeed);
                 }
             }
@@ -38,8 +39,15 @@ namespace ConsoleMenu.Model.Menu
 
         public override string DisplayContents()
         {
-            Submenus = UpdateFeed();
-            return "";
+            try
+            {
+                Submenus = UpdateFeed();
+                return "";
+            }
+            catch (Exception e)
+            {
+                return String.Format("{0}\n{1}", Contents, e.Message);
+            }
         }
     }
 }

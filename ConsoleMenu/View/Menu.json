@@ -2,13 +2,68 @@
     "Title": "Main Menu",
     "Submenus": [
         {
-            "Title": "Submenu 1",
-            "Contents": "This is an example of the first sub-menu",
+            "Title": "Introduction",
+            "Contents": "Welcome, dear user; to the terminal-based interactive menu.\nThe menu contains:\n- A file navigator\n- An RSS reader\n- And even a HTTP GET request.\nPlease enjoy your stay!",
             "SourceType": "Text"
         },
         {
-            "Title": "Submenu 2",
-            "Contents": "This is the second sub-menu",
+            "Title": "Editing the menu",
+            "Contents": "This menu is completely editable.\nBy accessing the Menu.json file, you can add or remove menu items.\nThe menu uses five basic fields that you can read more about:",
+            "Submenus": [
+                {
+                    "Title": "Title",
+                    "Contents": "The Title field holds the title of the submenu.\nThe title is what's used to represent the submenus when they're listed.\n`The title also appears at the top of each menu when you enter it.",
+                    "SourceType": "Text"
+                },
+                {
+                    "Title": "Contents",
+                    "Contents": "The Contents field is mostly optional.\nIt contains the descriptive text of the selected menu.\nMore often than not, this can be omitted entirely.\nUse this for user-info.",
+                    "SourceType": "Text"
+                },
+                {
+                    "Title": "Submenus",
+                    "Contents": "The Submenus field is just a list of menu items.\nEach element follows the same structure as a standard menu item.\nThe submenus can be nested indefinitely.",
+                    "SourceType": "Text"
+                },
+                {
+                    "Title": "Source",
+                    "Contents": "The Source field contains an external data source.\nThis external source can be an URL, or a file path.\nThe Source field does nothing when used with a Text menu.",
+                    "SourceType": "Text"
+                },
+                {
+                    "Title": "SourceType",
+                    "Contents": "The SourceType field tells the menu how to deserialise the menu item.\nThe source types are as follows:",
+                    "Submenus": [
+                        {
+                            "Title": "Text",
+                            "Contents": "Text sources are the most simple.\nThey rely solely on what's given to them through the source file",
+                            "SourceType": "Text"
+                        },
+                        {
+                            "Title": "File",
+                            "Contents": "File sources use a file path as their source, and display its info.",
+                            "SourceType": "Text"
+                        },
+                        {
+                            "Title": "Folder",
+                            "Contents": "Folder sources use a file path as their source\nThe path is used to display the containing files and folders",
+                            "SourceType": "Text"
+                        },
+                        {
+                            "Title": "Rss",
+                            "Contents": "The RSS sources take a URL to an RSS page and runs it through a simple parser.\nThe parsed data is then displayed on-screen.",
+                            "SourceType": "Text"
+                        },
+                        {
+                            "Title": "RestGet",
+                            "Contents": "The rest-get sends a GET to the specified source URL.",
+                            "SourceType": "Text"
+                        }
+                    ],
+                    "SourceType": "Text"
+                }
+
+            ],
             "SourceType": "Text"
         },
         {
@@ -22,6 +77,12 @@
             "Contents": "If you see this message, an error has occurred",
             "Source": "http://www.teamfortress.com/rss.xml",
             "SourceType": "Rss"
+        },
+        {
+            "Title": "File-System",
+            "Contents": "If you see this message, an error has occurred",
+            "Source": "C:\\",
+            "SourceType": "Folder"
         },
         {
             "Title": "Submenus Test",
@@ -38,7 +99,7 @@
                     "SourceType": "Text"
                 }
             ],
-            "SourceType":  "Text"
+            "SourceType": "Text"
         }
     ],
     "SourceType": "Text"
