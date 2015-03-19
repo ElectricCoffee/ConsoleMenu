@@ -55,7 +55,7 @@
     <Compile Include="Model\Menu\RestMenu.cs" />
     <Compile Include="Model\Menu\RssMenu.cs" />
     <Compile Include="Model\Menu\TextMenu.cs" />
-    <Compile Include="Model\RestGet.cs" />
+    <Compile Include="Model\Rest.cs" />
     <Compile Include="Model\SourceType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

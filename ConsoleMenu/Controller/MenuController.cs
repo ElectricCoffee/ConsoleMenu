@@ -17,10 +17,15 @@ namespace ConsoleMenu.Controller
             highlightBGColour = ConsoleColor.DarkCyan,
             normalBGColour = ConsoleColor.Black;
 
+        private static ConsoleColor[] bgColours = { ConsoleColor.DarkCyan, ConsoleColor.DarkMagenta, ConsoleColor.DarkYellow };
+        private static String[] colNames = { "[CYN]", "[MAG]", "[YEL]" };
+
         private static String menuPath = Path.Combine(Environment.CurrentDirectory, @"View\Menu.json");
         private MenuItem currentMenu;
         private Stack<MenuItem> menuHistory;
-        private Int32 menuIndex = 0;
+        private Int32 
+            menuIndex   = 0,
+            colourIndex = 0;
 
         public MenuController()
         {
@@ -51,6 +56,14 @@ namespace ConsoleMenu.Controller
                         if (currentMenu.Submenus != null)
                             menuIndex = menuIndex < currentMenu.Submenus.Count - 1 ? menuIndex + 1 : menuIndex;
                         break;
+                    case ConsoleKey.LeftArrow:
+                        if (colourIndex > 0)
+                            colourIndex--;
+                        break;
+                    case ConsoleKey.RightArrow:
+                        if (colourIndex < bgColours.Length - 1)
+                            colourIndex++;
+                        break;
                     case ConsoleKey.Enter: // enter menu item
                         if (currentMenu.Submenus != null)
                         {
@@ -72,6 +85,8 @@ namespace ConsoleMenu.Controller
                     default:
                         break;
                 }
+
+                highlightBGColour = bgColours[colourIndex];
             }
         }
 
@@ -121,9 +136,20 @@ namespace ConsoleMenu.Controller
             Console.WriteLine(
                 "--------------------------------------------------------" +
                 "\nUse [UP] and [DN] to navigate" +
-                "\nUse [RET] to select, [BSP] to go back, and [ESC] to quit" +
-                "\nCopyright 2015 @ Nikolaj Lepka"
+                "\nUse [RET] to select, [BSP] to go back, and [ESC] to quit"
             );
+            
+            // allows the colour switching, it's a useless feature, but it's fun.
+            Console.Write("Use [RGHT] and [LEFT] to select the highlight colour: ");
+            for (int i = 0; i < colNames.Length; i++)
+            {
+                if (colourIndex == i)
+                    Console.BackgroundColor = highlightBGColour;
+                Console.Write(colNames[i]);
+                Console.BackgroundColor = normalBGColour;
+                Console.Write(" "); // it's there to get the spacing right
+            }
+            Console.WriteLine("\nCopyright 2015 @ Nikolaj Lepka");
         }
     }
 }
