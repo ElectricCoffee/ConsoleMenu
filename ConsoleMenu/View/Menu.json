@@ -83,23 +83,6 @@
             "Contents": "If you see this message, an error has occurred",
             "Source": "C:\\",
             "SourceType": "Folder"
-        },
-        {
-            "Title": "Submenus Test",
-            "Contents": "Testing the submenu functionality",
-            "Submenus": [
-                {
-                    "Title": "Submenu 1",
-                    "Contents": "This is an example of the first sub-menu",
-                    "SourceType": "Text"
-                },
-                {
-                    "Title": "Submenu 2",
-                    "Contents": "This is the second sub-menu",
-                    "SourceType": "Text"
-                }
-            ],
-            "SourceType": "Text"
         }
     ],
     "SourceType": "Text"
