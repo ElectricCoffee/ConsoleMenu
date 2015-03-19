@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleMenu.Model
 {
+    /// <summary>
+    /// Container class for deserialisation of the GitHub status available from their api
+    /// Api available at https://status.github.com/api
+    /// </summary>
     class GitHubStatus
     {
         [JsonProperty(PropertyName = "status")]

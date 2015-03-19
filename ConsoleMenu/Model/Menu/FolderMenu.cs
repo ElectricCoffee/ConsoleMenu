@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleMenu.Model.Menu
 {
+    /// <summary>
+    /// Generates a sub-menu based on the content of the current directory
+    /// </summary>
     class FolderMenu : MenuItem
     {
         public override string DisplayContents()
@@ -34,9 +37,12 @@ namespace ConsoleMenu.Model.Menu
 
                     Submenus.Add(menuItem);
                 }
-            }
 
-            return "";
+                return "";
+            }
+            return String.Format("ERROR: The provided source [{0}] does not point to a valid directory", Source);
+
+            
         }
     }
 }

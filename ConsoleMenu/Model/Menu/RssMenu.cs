@@ -8,15 +8,21 @@ using System.ServiceModel.Syndication;
 
 namespace ConsoleMenu.Model.Menu
 {
+    /// <summary>
+    /// Downloads the contents of an RSS feed, and formats it so it gets displayed nicely
+    /// </summary>
     class RssMenu : MenuItem
     {
         private List<MenuItem> localSubMenus;
         private DateTime lastChecked;
 
+        /// <summary>
+        /// Checks if a minute has passed before updating the feed
+        /// this ensures the feed won't get updated every time the screen renders, reducing lag
+        /// </summary>
+        /// <returns>A new feed if the minute has passed, otherwise it returns the old one only</returns>
         private List<MenuItem> UpdateFeed()
         {
-            // check if a minute has passed before updating the feed
-            // this ensures the feed won't get updated every time the screen renders, reducing lag
             if (DateTime.Compare(lastChecked.AddMinutes(1), DateTime.Now) < 0)
             {
                 lastChecked = DateTime.Now;

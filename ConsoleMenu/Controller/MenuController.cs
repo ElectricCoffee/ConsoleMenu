@@ -29,6 +29,10 @@ namespace ConsoleMenu.Controller
             currentMenu = JsonConvert.DeserializeObject<MenuItem>(json, new MenuItemConverter());
         }
 
+        /// <summary>
+        /// Draws the contents of the screen, and then waits for user input
+        /// The user input determines how the UI will update.
+        /// </summary>
         public void Run()
         {
             var alive = true;
@@ -37,10 +41,7 @@ namespace ConsoleMenu.Controller
             {
                 Draw();
 
-                var keyInfo = Console.ReadKey();
-
-
-                switch (keyInfo.Key)
+                switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.UpArrow: // decrease index
                         if (currentMenu.Submenus != null)
@@ -74,6 +75,9 @@ namespace ConsoleMenu.Controller
             }
         }
 
+        /// <summary>
+        /// Re-draws the screen based on the current content
+        /// </summary>
         private void Draw()
         {
             Console.Clear(); // clear the screen 

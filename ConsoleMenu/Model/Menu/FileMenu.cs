@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleMenu.Model.Menu
 {
+    /// <summary>
+    /// Accesses file attributes based on source string, and displays them correctly in the menu
+    /// </summary>
     class FileMenu : MenuItem
     {
         public override string DisplayContents()

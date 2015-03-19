@@ -17,7 +17,7 @@
                 },
                 {
                     "Title": "Contents",
-                    "Contents": "The Contents field is mostly optional.\nIt contains the descriptive text of the selected menu.\nMore often than not, this can be omitted entirely.\nUse this for user-info.",
+                    "Contents": "The Contents field is mostly optional.\nIt contains the descriptive text of the selected menu.\nMore often than not, this can be omitted entirely.\nUse this for user-info and errors.",
                     "SourceType": "Text"
                 },
                 {

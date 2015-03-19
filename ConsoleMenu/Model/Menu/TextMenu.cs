@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleMenu.Model.Menu
 {
+    /// <summary>
+    /// Basic menu item, displays the contents if there are any
+    /// </summary>
     class TextMenu : MenuItem
     {
         public override String DisplayContents()
