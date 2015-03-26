@@ -22,14 +22,14 @@ namespace ConsoleMenu.Controller
 
         private static String menuPath = Path.Combine(Environment.CurrentDirectory, @"View\Menu.json");
         private MenuItem currentMenu;
-        private Stack<MenuItem> menuHistory;
+        private Stack<Tuple<Int32, MenuItem>> menuHistory;
         private Int32 
             menuIndex   = 0,
             colourIndex = 0;
 
         public MenuController()
         {
-            menuHistory = new Stack<MenuItem>();
+            menuHistory = new Stack<Tuple<Int32, MenuItem>>();
             var json = File.ReadAllText(menuPath);
             currentMenu = JsonConvert.DeserializeObject<MenuItem>(json, new MenuItemConverter());
         }
@@ -67,7 +67,7 @@ namespace ConsoleMenu.Controller
                     case ConsoleKey.Enter: // enter menu item
                         if (currentMenu.Submenus != null)
                         {
-                            menuHistory.Push(currentMenu);
+                            menuHistory.Push(Tuple.Create(menuIndex, currentMenu));
                             currentMenu = currentMenu.Submenus[menuIndex];
                             menuIndex = 0;
                         }
@@ -75,8 +75,8 @@ namespace ConsoleMenu.Controller
                     case ConsoleKey.Backspace: // go back one level
                         if (menuHistory.Count >= 1)
                         {
-                            currentMenu = menuHistory.Pop();
-                            menuIndex = 0;
+                            menuIndex = menuHistory.Peek().Item1;
+                            currentMenu = menuHistory.Pop().Item2;
                         }
                         break;
                     case ConsoleKey.Escape: // go back all levels
@@ -113,18 +113,12 @@ namespace ConsoleMenu.Controller
                  * otherwise re-draw the menu at the first element; this is done to allow scrolling menus */
                 var startingValue = menuIndex > 1 && count > 10 ? menuIndex - 1 : 0;
 
-                /* never render more than 10 elements past the starting value, 
+                /* never render more than 15 elements past the starting value, 
                  * this is so we don't overflow the screen with menu items */
-                var buffer = startingValue + 10;
+                var buffer = startingValue + 15;
 
                 for (Int32 i = startingValue; i < count && i < buffer; i++)
-                {
-                    if (i == menuIndex)
-                        Console.BackgroundColor = highlightBGColour;
-
-                    Console.WriteLine("  [{0,3}] {1}", i, currentMenu.Submenus[i].Title);
-                    Console.BackgroundColor = normalBGColour;
-                }
+                    Highlight(i, menuIndex, () => Console.WriteLine("  [{0,3}] {1}", i, currentMenu.Submenus[i].Title));
 
                 if (buffer < count)
                 {
@@ -143,13 +137,18 @@ namespace ConsoleMenu.Controller
             Console.Write("Use [RGHT] and [LEFT] to select the highlight colour: ");
             for (int i = 0; i < colNames.Length; i++)
             {
-                if (colourIndex == i)
-                    Console.BackgroundColor = highlightBGColour;
-                Console.Write(colNames[i]);
-                Console.BackgroundColor = normalBGColour;
+                Highlight(i, colourIndex, () => Console.Write(colNames[i]));
                 Console.Write(" "); // it's there to get the spacing right
             }
             Console.WriteLine("\nCopyright 2015 @ Nikolaj Lepka");
+        }
+
+        private void Highlight(int requiredIndex, int currentIndex, Action prompt)
+        {
+            if (requiredIndex == currentIndex)
+                Console.BackgroundColor = highlightBGColour;
+            prompt();
+            Console.BackgroundColor = normalBGColour;
         }
     }
 }

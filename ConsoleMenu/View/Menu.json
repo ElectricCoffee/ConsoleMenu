@@ -83,6 +83,12 @@
             "Contents": "If you see this message, an error has occurred",
             "Source": "C:\\",
             "SourceType": "Folder"
+        },
+        {
+            "Title": "Home-Folder",
+            "Contents": "If you see this message, an error has occurred",
+            "Source": "C:\\Users\\Slench\\",
+            "SourceType": "Folder"
         }
     ],
     "SourceType": "Text"
