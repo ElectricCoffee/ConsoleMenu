@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace ConsoleMenu
 {
@@ -10,7 +7,9 @@ namespace ConsoleMenu
     {
         static void Main(string[] args)
         {
-            new Controller.MenuController().Run(); // run the UI
+            var menuPath = Path.Combine(Environment.CurrentDirectory, @"View\Menu.json");
+
+            new Controller.MenuController(menuPath).Run(); // run the UI
         }
     }
 }

@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using ConsoleMenu.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-using ConsoleMenu.Model;
 
 namespace ConsoleMenu.Controller
 {
@@ -19,15 +14,13 @@ namespace ConsoleMenu.Controller
 
         private static ConsoleColor[] bgColours = { ConsoleColor.DarkCyan, ConsoleColor.DarkMagenta, ConsoleColor.DarkYellow };
         private static String[] colNames = { "[CYN]", "[MAG]", "[YEL]" };
-
-        private static String menuPath = Path.Combine(Environment.CurrentDirectory, @"View\Menu.json");
         private MenuItem currentMenu;
         private Stack<Tuple<Int32, MenuItem>> menuHistory;
         private Int32 
             menuIndex   = 0,
             colourIndex = 0;
 
-        public MenuController()
+        public MenuController(string menuPath)
         {
             menuHistory = new Stack<Tuple<Int32, MenuItem>>();
             var json = File.ReadAllText(menuPath);
